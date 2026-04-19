@@ -34,5 +34,50 @@
     "type": "bool",
     "default": false,
     "hint": "开启后玩家可用 /applywl 指令申请白名单，每个QQ只能绑定一个MC账号"
+  },
+  "mcrun_blocked_extra": {
+    "description": "在 /mcrun 默认拦截的首词之外追加禁止项（小写，与命令第一个词比较，不含命名空间前缀）",
+    "type": "list",
+    "items": {
+      "type": "string"
+    },
+    "default": [],
+    "hint": "默认已拦截 stop、restart、op、deop、reload；例如追加 rl、bukkit:reload 的首词 rl"
+  },
+  "mc_chat_log_to_qq_enabled": {
+    "description": "是否监听 MC 服务端 latest.log，把游戏内带触发前缀的聊天转发到 QQ（需 AstrBot 能访问日志文件）",
+    "type": "bool",
+    "default": false
+  },
+  "mc_chat_log_path": {
+    "description": "服务端 latest.log 的绝对路径，例如 Windows: D:/server/logs/latest.log；Linux: /home/mc/server/logs/latest.log",
+    "type": "string",
+    "default": "",
+    "hint": "与开服端 logs/latest.log 一致；远程服需挂载或改用服内插件上报"
+  },
+  "mc_chat_trigger_prefix": {
+    "description": "游戏内聊天里、紧跟在 <玩家名> 后的触发前缀，匹配后才转发到 QQ（不含玩家名本身）",
+    "type": "string",
+    "default": ".mcsay "
+  },
+  "mc_chat_unified_msg_origin": {
+    "description": "转发目标会话 ID（与 event.unified_msg_origin 相同）。留空可在群内用管理员命令 /mcbindchat 写入数据文件",
+    "type": "string",
+    "default": ""
+  },
+  "mc_chat_qq_group_id": {
+    "description": "若未填 unified_msg_origin，可填 QQ 群号字符串，配合 mc_chat_qq_platform 用 StarTools.send_message_by_id 发群消息",
+    "type": "string",
+    "default": ""
+  },
+  "mc_chat_qq_platform": {
+    "description": "send_message_by_id 使用的平台名，一般为 aiocqhttp",
+    "type": "string",
+    "default": "aiocqhttp"
+  },
+  "mc_chat_log_tail_from_end": {
+    "description": "启动时是否从日志文件末尾开始读，避免把历史聊天一次性转发到 QQ",
+    "type": "bool",
+    "default": true
   }
 }
